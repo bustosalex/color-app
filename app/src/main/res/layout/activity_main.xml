@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:padding="60dp"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/app_name"
+        android:padding="48dp"
+        style="@style/TextAppearance.AppCompat.Large" />
+    <TextView
+        android:layout_width="208dp"
+        android:layout_height="163dp"
+        android:text="This is a quick 6 question survey that shouldn't take more than 5 minutes. At the end of the survey you will be asked to fill out a form that asks for age, gender, and nationality" />
+
+    <Button
+        android:id="@+id/button_menu_start"
+        android:text="@string/menu_start"
+        android:layout_width="match_parent"
+        android:onClick="startApp"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

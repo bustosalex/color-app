@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="338dp"
+        android:gravity="center">
+        <TableRow
+            android:layout_margin="10dp"
+            android:layout_gravity="center_horizontal">
+            <TextView
+                android:text="What is your gender"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"/>
+            <Spinner android:layout_gravity="right"
+                android:id="@+id/spinner"
+                android:background="@android:drawable/btn_dropdown"
+                android:spinnerMode="dropdown">
+            </Spinner>
+
+        </TableRow>
+
+        <TableRow
+            android:layout_margin="10dp"
+            android:layout_gravity="center_horizontal">
+            <TextView
+                android:text="How old are you?"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"/>
+            <EditText
+                android:hint="13-35"
+                />
+        </TableRow>
+
+    </TableLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Next Question"
+        android:id="@+id/goTOQuiz"
+        android:onClick="startQuiz"
+        android:layout_gravity="center_horizontal" />
+</LinearLayout>
