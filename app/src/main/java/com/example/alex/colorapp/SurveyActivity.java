@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,7 +28,7 @@ public class SurveyActivity extends AppCompatActivity {
             "purple","red", "yellow"};
     private Map<String, String> userAnswers = new HashMap<>();
     private int questionNumber;
-    private List<String> emotArray;
+    private List<String> emotionList = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,42 +43,50 @@ public class SurveyActivity extends AppCompatActivity {
         questionNumber = 1;
         progress.setText((questionNumber + 1) + "/10");
         setImage(0);
-//        getAnswersFromXML();
-//        getEmotionsFromXML();
-//        setRandomAnswers();
+        //This method is used to
+        getAnswersFromXML();
+        getEmotionsFromXML();
+        setRandomAnswers();
         next.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                if (questionNumber < colorArray.length){
-                    setImage(questionNumber);
-                    questionNumber++;
-                    progress.setText((questionNumber+1) + "/10");
-//                    setRandomAnswers();
-                }
+                nextQuestion();
             }
         });
     }
+
+    private void nextQuestion() {
+        if (questionNumber < colorArray.length){
+            setImage(questionNumber);
+            questionNumber++;
+            progress.setText((questionNumber + 1) + "/10");
+            //setRandomAnswers();
+        }
+    }
+
     private void setImage(int index) {
+
         image.setImageResource(getResources().getIdentifier(colorArray[index], "drawable", getPackageName()));
 
     }
 
     private void getAnswersFromXML(){
+
         allCorrectAnswers.clear();
 
         //specifying where the split is on the filename string to put the answer into map
         String[] stringArray = getResources().getStringArray(R.array.colorAnswers);
         for (String entry : stringArray) {
             String[] splitResult = entry.split("\\|", 2);
-            // put answers into map
-            allCorrectAnswers.put(splitResult[0], splitResult[1]);
+            // put answers into map so that it looks like Key:Color and Value:Emotion
+            allCorrectAnswers.put(splitResult[1], splitResult[0]);
         }
     }
     private void getEmotionsFromXML(){
-        emotArray.clear();
-        String[] stringArray = getResources().getStringArray(R.array.emotions);
-        for (String entry : stringArray){
-            emotArray.add(entry);
+        emotionList.clear();
+        String[] emotArray = getResources().getStringArray(R.array.emotions);
+        for (String temp : emotArray){
+            emotionList.add(temp);
         }
     }
 
@@ -86,15 +95,15 @@ public class SurveyActivity extends AppCompatActivity {
         deselectAllRadioButtons();
 
         for(int i = 0; i < radioButtons.length; i++) {
-            int rnd = random.nextInt(emotArray.size());
+            int rnd = random.nextInt(emotionList.size());
             String str = colorArray[questionNumber-1];
-            if (allCorrectAnswers.containsValue(colorArray[questionNumber - 1])) {
+            if (allCorrectAnswers.containsKey(str)) {
 
                 radioButtons[i].setText(allCorrectAnswers.get(str));
 
             }
-            else if(!(emotArray.get(rnd).equals(str))){
-                radioButtons[i].setText(emotArray.get(rnd));
+            else if(!(emotionList.get(rnd).equals(str))){
+                radioButtons[i].setText(emotionList.get(rnd));
             }
         }
     }
