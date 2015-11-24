@@ -26,10 +26,10 @@ public class SurveyActivity extends AppCompatActivity {
     private Map<String, String> allCorrectAnswers= new HashMap<>(); //allAnswers in sportsQuiz app
     private String[] colorArray = new String[]{"blue","green","orange",
             "purple","red", "yellow"};
-    private Map<String, String> userAnswers = new HashMap<>();
     private int questionNumber;
     private List<String> emotionList = new ArrayList<>();
     private List<String> radioButtonList = new ArrayList<>();
+    private Map<String, String> userAnswers = new HashMap<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,7 +57,7 @@ public class SurveyActivity extends AppCompatActivity {
     }
 
     private void nextQuestion() {
-        if (questionNumber < colorArray.length){
+        if (questionNumber < colorArray.length && isChecked()==true){
             setImage(questionNumber);
             questionNumber++;
             progress.setText((questionNumber + 1) + "/10");
@@ -130,6 +130,15 @@ public class SurveyActivity extends AppCompatActivity {
             radioButton.setChecked(false);
             radioButton.setText("");
         }
+    }
+
+    private boolean isChecked (){
+        boolean isChecked = false;
+        for (int t = 0; t < radioButtons.length; t++){
+            if(radioButtons[t].isChecked())
+                isChecked = true;
+        }
+        return isChecked;
     }
 
 }

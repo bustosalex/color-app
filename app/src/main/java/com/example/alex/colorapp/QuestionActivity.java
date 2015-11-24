@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 /**
@@ -18,11 +19,13 @@ public class QuestionActivity extends AppCompatActivity implements AdapterView.O
     private Spinner spinner;
     private Button startQuiz;
     private static final String[]options = {"Male", "Female", "Transgender", "Do not want to choose"};
+    private EditText age;
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.last_question);
         spinner = (Spinner)findViewById(R.id.spinner);
+        age = (EditText) findViewById(R.id.editAge);
         ArrayAdapter<String>adapter = new ArrayAdapter<String>(QuestionActivity.this,
                 android.R.layout.simple_spinner_item,options);
 
@@ -41,9 +44,20 @@ public class QuestionActivity extends AppCompatActivity implements AdapterView.O
     }
 
     private void beginQuiz(View v) {
-        Intent intent = new Intent(this, SurveyActivity.class);
-        Log.d("SubmitActivity", "intent");
-        startActivity(intent);
+        if(conditionsAreMet()==true) {
+            Intent intent = new Intent(this, SurveyActivity.class);
+            Log.d("SubmitActivity", "intent");
+            startActivity(intent);
+        }
+    }
+
+    private boolean conditionsAreMet() {
+        boolean next = false;
+        if (!age.getText().toString().isEmpty() && Integer.parseInt(age.getText().toString())>=13
+                && Integer.parseInt(age.getText().toString())<=38)
+            next = true;
+
+        return next;
     }
 
     @Override

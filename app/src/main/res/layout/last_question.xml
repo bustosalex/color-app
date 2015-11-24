@@ -29,6 +29,7 @@
                 android:text="How old are you?"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"/>
             <EditText
+                android:id="@+id/editAge"
                 android:hint="13-35"
                 />
         </TableRow>
