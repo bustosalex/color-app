@@ -29,6 +29,7 @@ public class SurveyActivity extends AppCompatActivity {
     private Map<String, String> userAnswers = new HashMap<>();
     private int questionNumber;
     private List<String> emotionList = new ArrayList<>();
+    private List<String> radioButtonList = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,7 +61,7 @@ public class SurveyActivity extends AppCompatActivity {
             setImage(questionNumber);
             questionNumber++;
             progress.setText((questionNumber + 1) + "/10");
-            //setRandomAnswers();
+            setRandomAnswers();
         }
     }
 
@@ -93,18 +94,34 @@ public class SurveyActivity extends AppCompatActivity {
     private void setRandomAnswers(){
         Random random = new Random();
         deselectAllRadioButtons();
-
+        radioButtonList.clear();
+        String str = colorArray[questionNumber-1];
         for(int i = 0; i < radioButtons.length; i++) {
-            int rnd = random.nextInt(emotionList.size());
-            String str = colorArray[questionNumber-1];
-            if (allCorrectAnswers.containsKey(str)) {
 
-                radioButtons[i].setText(allCorrectAnswers.get(str));
+            boolean set =false;
+            while(!set){
+                int j = 0;
+                int rnd = random.nextInt(emotionList.size());
+                for (String temp : emotionList){
+                    if (j==rnd){
+                        if(temp.equals(str)) {
+                            radioButtons[i].setText(str);
+                            radioButtonList.add(str);
+                            set = true;
+                        }
+                        else if(!radioButtonList.contains(str) &&
+                                !radioButtonList.contains(temp)){
+                            radioButtons[i].setText(temp);
+                            radioButtonList.add(temp);
+                            set=true;
+                        }
+                        else
+                            rnd = random.nextInt(emotionList.size());
+                    }
+                    j++;
+                }
+            }
 
-            }
-            else if(!(emotionList.get(rnd).equals(str))){
-                radioButtons[i].setText(emotionList.get(rnd));
-            }
         }
     }
 
