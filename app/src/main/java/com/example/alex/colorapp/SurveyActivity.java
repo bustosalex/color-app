@@ -77,6 +77,17 @@ public class SurveyActivity extends AppCompatActivity {
             addUserAnswersToMap(questionNumber);
             Log.d("LastAnswer", selectedAnswers.get("yellow"));
             currentUser.setHashMap(selectedAnswers);
+
+            UserLocalStore store = new UserLocalStore(this);
+            store.storeUserData(currentUser);
+            ServerRequest serverRequest = new ServerRequest(this);
+            serverRequest.storeUserDataInBackground(currentUser, new GetUserCallback() {
+                @Override
+                public void done(User returnedUser) {
+                    Intent goBack = new Intent(SurveyActivity.this, MainActivity.class);
+                    startActivity(goBack);
+                }
+            });
         }
 
     }

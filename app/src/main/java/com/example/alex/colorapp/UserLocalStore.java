@@ -21,14 +21,15 @@ public class UserLocalStore {
         SharedPreferences.Editor userLocalDatabaseEditor = userLocalDatabase.edit();
         userLocalDatabaseEditor.putString("gender", user.getGender());
         userLocalDatabaseEditor.putInt("age", user.getAge());
+        userLocalDatabaseEditor.putStringSet("answers", user.getHashMap().keySet());
         userLocalDatabaseEditor.commit();
     }
 
-    public void setUserLoggedIn(boolean loggedIn) {
-        SharedPreferences.Editor userLocalDatabaseEditor = userLocalDatabase.edit();
-        userLocalDatabaseEditor.putBoolean("loggedIn", loggedIn);
-        userLocalDatabaseEditor.commit();
-    }
+//    public void setUserLoggedIn(boolean loggedIn) {
+//        SharedPreferences.Editor userLocalDatabaseEditor = userLocalDatabase.edit();
+//        userLocalDatabaseEditor.putBoolean("loggedIn", loggedIn);
+//        userLocalDatabaseEditor.commit();
+//    }
 
     public void clearUserData() {
         SharedPreferences.Editor userLocalDatabaseEditor = userLocalDatabase.edit();
@@ -36,18 +37,6 @@ public class UserLocalStore {
         userLocalDatabaseEditor.commit();
     }
 
-//    public User getLoggedInUser() {
-//        if (userLocalDatabase.getBoolean("loggedIn", false) == false) {
-//            return null;
-//        }
-//
-//        String name = userLocalDatabase.getString("name", "");
-//        String username = userLocalDatabase.getString("username", "");
-//        String password = userLocalDatabase.getString("password", "");
-//        int age = userLocalDatabase.getInt("age", -1);
-//
-//        User user = new User(name, age, username, password);
-//        return user;
-//    }
+
 }
 

@@ -24,6 +24,10 @@ public class User implements Serializable {
         this.userAnswers = userAnswers;
     }
 
+    public Map<String, String> getHashMap(){
+        return this.userAnswers;
+    }
+
     public void setAge(String age){
         int integerAge = Integer.parseInt(age.toString());
         this.age = integerAge;

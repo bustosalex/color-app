@@ -31,12 +31,12 @@ public class ServerRequest {
     public static final int CONNECTION_TIMEOUT = 1000 * 15;
     public static final String SERVER_ADDRESS = "http://dev.mateo.io/mobiledev/alex/";
 
-//    public ServerRequests(Context context) {
-//        progressDialog = new ProgressDialog(context);
-//        progressDialog.setCancelable(false);
-//        progressDialog.setTitle("Processing...");
-//        progressDialog.setMessage("Please wait...");
-//    }
+    public ServerRequest(Context context){
+        progressDialog = new ProgressDialog(context);
+        progressDialog.setCancelable(false);
+        progressDialog.setTitle("Processing...");
+        progressDialog.setMessage("Please wait...");
+    }
 
     public void storeUserDataInBackground(User user,
                                           GetUserCallback userCallBack) {
@@ -100,8 +100,4 @@ public class ServerRequest {
         }
 
     }
-
-
-
-
 }
