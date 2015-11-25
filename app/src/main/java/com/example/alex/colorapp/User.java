@@ -11,12 +11,12 @@ import java.util.Map;
  * Created by alex on 11/24/15.
  */
 public class User implements Serializable {
-    private String sex;
+    private String gender;
     private int age;
     private Map<String, String> userAnswers;
     //Constructor
-    public User(String sex, String age){
-        this.sex = sex;
+    public User(String gender, String age){
+        this.gender = gender;
         this.age = Integer.parseInt(age.toString());
     }
 
@@ -34,10 +34,10 @@ public class User implements Serializable {
     }
 
     public void setGender(String gender){
-        this.sex=gender;
+        this.gender=gender;
     }
     public String getGender(){
-        return this.sex;
+        return this.gender;
     }
 
 }
