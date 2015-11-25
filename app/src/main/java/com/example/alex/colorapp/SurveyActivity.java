@@ -1,5 +1,6 @@
 package com.example.alex.colorapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -19,7 +20,10 @@ import java.util.Map;
 import java.util.Random;
 
 public class SurveyActivity extends AppCompatActivity {
+
+    TextView temp;
     TextView progress;
+
     ImageView image;
     Button next;
     private RadioButton[] radioButtons = new RadioButton[4];
@@ -34,13 +38,21 @@ public class SurveyActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_survey);
+        Intent i = getIntent();
+        User currentUser = (User) i.getExtras().getSerializable("UserObject");
+        //temp = (TextView) findViewById(R.id.progress);
         next = (Button) findViewById(R.id.nextColor);
         image = (ImageView) findViewById(R.id.image_question);
         progress = (TextView) findViewById(R.id.question_counter_overall);
+
+
+        //temp.setText(currentUser.getAge());
         radioButtons[0] = (RadioButton) findViewById(R.id.radio_button_1);
         radioButtons[1] = (RadioButton) findViewById(R.id.radio_button_2);
         radioButtons[2] = (RadioButton) findViewById(R.id.radio_button_3);
         radioButtons[3] = (RadioButton) findViewById(R.id.radio_button_4);
+
+
         questionNumber = 0;
         progress.setText(questionNumber + "/10");
         setImage(questionNumber);

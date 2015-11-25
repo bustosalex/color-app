@@ -3,6 +3,7 @@ package com.example.alex.colorapp;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.SyncStateContract;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -49,7 +50,8 @@ public class QuestionActivity extends AppCompatActivity implements AdapterView.O
             String userGender = spinner.getSelectedItem().toString();
             User user = new User (userGender, userAge);
             Intent intent = new Intent(this, SurveyActivity.class);
-            Log.d("SubmitActivity", userAge);
+            intent.putExtra("UserObject", user);
+            Log.d("PassedUserObject", user.toString());
             startActivity(intent);
         }
     }
