@@ -33,4 +33,11 @@ public class User implements Serializable {
         return this.age;
     }
 
+    public void setGender(String gender){
+        this.sex=gender;
+    }
+    public String getGender(){
+        return this.sex;
+    }
+
 }

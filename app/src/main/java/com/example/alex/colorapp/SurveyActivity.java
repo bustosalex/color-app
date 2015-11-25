@@ -20,8 +20,7 @@ import java.util.Map;
 import java.util.Random;
 
 public class SurveyActivity extends AppCompatActivity {
-
-    TextView temp;
+    User currentUser;
     TextView progress;
 
     ImageView image;
@@ -39,14 +38,12 @@ public class SurveyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_survey);
         Intent i = getIntent();
-        User currentUser = (User) i.getExtras().getSerializable("UserObject");
-        //temp = (TextView) findViewById(R.id.progress);
+        currentUser = (User) i.getExtras().getSerializable("UserObject");
         next = (Button) findViewById(R.id.nextColor);
         image = (ImageView) findViewById(R.id.image_question);
         progress = (TextView) findViewById(R.id.question_counter_overall);
 
 
-        //temp.setText(currentUser.getAge());
         radioButtons[0] = (RadioButton) findViewById(R.id.radio_button_1);
         radioButtons[1] = (RadioButton) findViewById(R.id.radio_button_2);
         radioButtons[2] = (RadioButton) findViewById(R.id.radio_button_3);
@@ -76,6 +73,12 @@ public class SurveyActivity extends AppCompatActivity {
             progress.setText(questionNumber+ "/10");
             setRandomAnswers();
         }
+        else if (questionNumber == colorArray.length-1 && isChecked()!=null){
+            addUserAnswersToMap(questionNumber);
+            Log.d("LastAnswer", selectedAnswers.get("yellow"));
+            currentUser.setHashMap(selectedAnswers);
+        }
+
     }
 
     private void setImage(int index) {
