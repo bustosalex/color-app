@@ -29,7 +29,7 @@ public class SurveyActivity extends AppCompatActivity {
     private int questionNumber;
     private List<String> emotionList = new ArrayList<>();
     private List<String> radioButtonList = new ArrayList<>();
-    private Map<String, String> userAnswers = new HashMap<>();
+    private Map<String, String> selectedAnswers = new HashMap<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,9 +41,9 @@ public class SurveyActivity extends AppCompatActivity {
         radioButtons[1] = (RadioButton) findViewById(R.id.radio_button_2);
         radioButtons[2] = (RadioButton) findViewById(R.id.radio_button_3);
         radioButtons[3] = (RadioButton) findViewById(R.id.radio_button_4);
-        questionNumber = 1;
-        progress.setText((questionNumber + 1) + "/10");
-        setImage(0);
+        questionNumber = 0;
+        progress.setText(questionNumber + "/10");
+        setImage(questionNumber);
         //This method is used to
         getAnswersFromXML();
         getEmotionsFromXML();
@@ -57,10 +57,11 @@ public class SurveyActivity extends AppCompatActivity {
     }
 
     private void nextQuestion() {
-        if (questionNumber < colorArray.length && isChecked()==true){
-            setImage(questionNumber);
+        if (questionNumber < colorArray.length-1 && isChecked()!=null){
+            addUserAnswersToMap(questionNumber);
             questionNumber++;
-            progress.setText((questionNumber + 1) + "/10");
+            setImage(questionNumber);
+            progress.setText(questionNumber+ "/10");
             setRandomAnswers();
         }
     }
@@ -95,7 +96,7 @@ public class SurveyActivity extends AppCompatActivity {
         Random random = new Random();
         deselectAllRadioButtons();
         radioButtonList.clear();
-        String str = colorArray[questionNumber-1];
+        String str = colorArray[questionNumber];
         for(int i = 0; i < radioButtons.length; i++) {
 
             boolean set =false;
@@ -132,13 +133,19 @@ public class SurveyActivity extends AppCompatActivity {
         }
     }
 
-    private boolean isChecked (){
-        boolean isChecked = false;
+    private RadioButton isChecked (){
         for (int t = 0; t < radioButtons.length; t++){
-            if(radioButtons[t].isChecked())
-                isChecked = true;
+            if(radioButtons[t].isChecked()) {
+                return radioButtons[t];
+            }
         }
-        return isChecked;
+        return null;
+
+    }
+    private void addUserAnswersToMap(int index){
+        RadioButton temp = isChecked();
+        String userAnswer = temp.getText().toString();
+        selectedAnswers.put(colorArray[index].toString(), userAnswer);
     }
 
 }

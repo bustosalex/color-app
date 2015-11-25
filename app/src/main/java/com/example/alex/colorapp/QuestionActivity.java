@@ -45,8 +45,11 @@ public class QuestionActivity extends AppCompatActivity implements AdapterView.O
 
     private void beginQuiz(View v) {
         if(conditionsAreMet()==true) {
+            String userAge = age.getText().toString();
+            String userGender = spinner.getSelectedItem().toString();
+            User user = new User (userGender, userAge);
             Intent intent = new Intent(this, SurveyActivity.class);
-            Log.d("SubmitActivity", "intent");
+            Log.d("SubmitActivity", userAge);
             startActivity(intent);
         }
     }
