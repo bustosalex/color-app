@@ -25,7 +25,7 @@ public class SurveyActivity extends AppCompatActivity {
 
     ImageView image;
     Button next;
-    private RadioButton[] radioButtons = new RadioButton[4];
+    private RadioButton[] radioButtons = new RadioButton[6];
     private Map<String, String> allCorrectAnswers= new HashMap<>(); //allAnswers in sportsQuiz app
     private String[] colorArray = new String[]{"blue","green","orange",
             "purple","red", "yellow"};
@@ -48,6 +48,8 @@ public class SurveyActivity extends AppCompatActivity {
         radioButtons[1] = (RadioButton) findViewById(R.id.radio_button_2);
         radioButtons[2] = (RadioButton) findViewById(R.id.radio_button_3);
         radioButtons[3] = (RadioButton) findViewById(R.id.radio_button_4);
+        radioButtons[4] = (RadioButton) findViewById(R.id.radio_button_5);
+        radioButtons[5] = (RadioButton) findViewById(R.id.radio_button_6);
 
 
         questionNumber = 0;
@@ -78,6 +80,7 @@ public class SurveyActivity extends AppCompatActivity {
             Log.d("LastAnswer", selectedAnswers.get("yellow"));
             currentUser.setHashMap(selectedAnswers);
             Log.d("UserSet", currentUser.getHashMap().get("yellow"));
+
             UserLocalStore store = new UserLocalStore(this);
             store.storeUserData(currentUser);
             ServerRequest serverRequest = new ServerRequest(this);

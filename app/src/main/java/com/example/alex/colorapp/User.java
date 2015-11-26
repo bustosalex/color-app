@@ -13,11 +13,13 @@ import java.util.Map;
 public class User implements Serializable {
     private String gender;
     private int age;
+    private String favoriteColor;
     private Map<String, String> userAnswers;
     //Constructor
-    public User(String gender, String age){
+    public User(String gender, String age, String favoriteColor){
         this.gender = gender;
         this.age = Integer.parseInt(age.toString());
+        this.favoriteColor = favoriteColor;
     }
 
     public void setHashMap(Map<String, String> userAnswers){
@@ -42,6 +44,13 @@ public class User implements Serializable {
     }
     public String getGender(){
         return this.gender;
+    }
+
+    public void setFavoriteColor(String favoriteColor){
+        this.favoriteColor=favoriteColor;
+    }
+    public String getFavoriteColor(){
+        return this.favoriteColor;
     }
 
 }

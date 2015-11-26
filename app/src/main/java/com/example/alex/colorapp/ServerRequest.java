@@ -65,13 +65,16 @@ public class ServerRequest {
         @Override
         protected Void doInBackground(Void... params) {
             ArrayList<NameValuePair> dataToSend = new ArrayList<>();
-            dataToSend.add(new BasicNameValuePair("gender", user.getGender()));
-            dataToSend.add(new BasicNameValuePair("age", user.getAge()+""));
 
+            dataToSend.add(new BasicNameValuePair("gender", user.getGender()));
+            Log.d("GenderBeingSent", user.getGender());
+            dataToSend.add(new BasicNameValuePair("age", user.getAge() + ""));
+            dataToSend.add(new BasicNameValuePair("favoriteColor", user.getFavoriteColor()));
             Iterator iterator = user.getHashMap().entrySet().iterator();
             while(iterator.hasNext()){
                 Map.Entry pair = (Map.Entry) iterator.next();
                 dataToSend.add(new BasicNameValuePair(pair.getKey().toString(), pair.getValue().toString()));
+                Log.d("it.pair", pair.getKey().toString());
                 iterator.remove();
             }
 

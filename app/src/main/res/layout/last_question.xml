@@ -32,6 +32,10 @@
                 android:id="@+id/editAge"
                 android:hint="13-35"
                 />
+            <EditText
+                android:id="@+id/editFavColor"
+                android:hint="red"
+                />
         </TableRow>
 
     </TableLayout>

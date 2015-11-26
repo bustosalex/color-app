@@ -20,6 +20,7 @@ public class QuestionActivity extends AppCompatActivity implements AdapterView.O
     private Spinner spinner;
     private Button startQuiz;
     private static final String[]options = {"Male", "Female", "Transgender", "Do not want to choose"};
+    private EditText favoriteColor;
     private EditText age;
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -27,6 +28,8 @@ public class QuestionActivity extends AppCompatActivity implements AdapterView.O
         setContentView(R.layout.last_question);
         spinner = (Spinner)findViewById(R.id.spinner);
         age = (EditText) findViewById(R.id.editAge);
+        favoriteColor = (EditText) findViewById(R.id.editFavColor);
+
         ArrayAdapter<String>adapter = new ArrayAdapter<String>(QuestionActivity.this,
                 android.R.layout.simple_spinner_item,options);
 
@@ -48,7 +51,8 @@ public class QuestionActivity extends AppCompatActivity implements AdapterView.O
         if(conditionsAreMet()==true) {
             String userAge = age.getText().toString();
             String userGender = spinner.getSelectedItem().toString();
-            User user = new User (userGender, userAge);
+            String userFavoriteColor = favoriteColor.getText().toString();
+            User user = new User (userGender, userAge, userFavoriteColor);
             Intent intent = new Intent(this, SurveyActivity.class);
             intent.putExtra("UserObject", user);
             Log.d("PassedUserObject", user.toString());
