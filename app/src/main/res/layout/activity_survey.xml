@@ -61,10 +61,6 @@
             android:id="@+id/radio_button_5"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"/>
-        <RadioButton
-            android:id="@+id/radio_button_6"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"/>
 
     </RadioGroup>
 
