@@ -20,6 +20,9 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 /**
  * Created by alex on 11/25/15.
@@ -64,8 +67,13 @@ public class ServerRequest {
             ArrayList<NameValuePair> dataToSend = new ArrayList<>();
             dataToSend.add(new BasicNameValuePair("gender", user.getGender()));
             dataToSend.add(new BasicNameValuePair("age", user.getAge()+""));
-//            dataToSend.add(new BasicNameValuePair("password", user.password));
-//            dataToSend.add(new BasicNameValuePair("age", user.age + ""));
+
+            Iterator iterator = user.getHashMap().entrySet().iterator();
+            while(iterator.hasNext()){
+                Map.Entry pair = (Map.Entry) iterator.next();
+                dataToSend.add(new BasicNameValuePair(pair.getKey().toString(), pair.getValue().toString()));
+                iterator.remove();
+            }
 
             HttpParams httpRequestParams = getHttpRequestParams();
 

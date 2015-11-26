@@ -77,7 +77,7 @@ public class SurveyActivity extends AppCompatActivity {
             addUserAnswersToMap(questionNumber);
             Log.d("LastAnswer", selectedAnswers.get("yellow"));
             currentUser.setHashMap(selectedAnswers);
-
+            Log.d("UserSet", currentUser.getHashMap().get("yellow"));
             UserLocalStore store = new UserLocalStore(this);
             store.storeUserData(currentUser);
             ServerRequest serverRequest = new ServerRequest(this);
