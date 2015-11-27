@@ -69,7 +69,7 @@ public class ServerRequest {
             dataToSend.add(new BasicNameValuePair("gender", user.getGender()));
             Log.d("GenderBeingSent", user.getGender());
             dataToSend.add(new BasicNameValuePair("age", user.getAge() + ""));
-            dataToSend.add(new BasicNameValuePair("favoriteColor", user.getFavoriteColor()));
+            dataToSend.add(new BasicNameValuePair("favColor", user.getFavoriteColor()));
             Iterator iterator = user.getHashMap().entrySet().iterator();
             while(iterator.hasNext()){
                 Map.Entry pair = (Map.Entry) iterator.next();

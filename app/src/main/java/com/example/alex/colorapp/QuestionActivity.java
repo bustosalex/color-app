@@ -48,7 +48,7 @@ public class QuestionActivity extends AppCompatActivity implements AdapterView.O
     }
 
     private void beginQuiz(View v) {
-        if(conditionsAreMet()==true) {
+        if(conditionsAreMet()) {
             String userAge = age.getText().toString();
             String userGender = spinner.getSelectedItem().toString();
             String userFavoriteColor = favoriteColor.getText().toString();
@@ -63,7 +63,7 @@ public class QuestionActivity extends AppCompatActivity implements AdapterView.O
     private boolean conditionsAreMet() {
         boolean next = false;
         if (!age.getText().toString().isEmpty() && Integer.parseInt(age.getText().toString())>=13
-                && Integer.parseInt(age.getText().toString())<=38)
+                && Integer.parseInt(age.getText().toString())<=50 && !favoriteColor.getText().toString().isEmpty())
             next = true;
 
         return next;
